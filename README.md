@@ -1,16 +1,21 @@
 # peakperformance_shop
 
-A new Flutter project.
+## Jelaskan apa itu widget tree pada Flutter dan bagaimana hubungan parent-child (induk-anak) bekerja antar widget.
+Dalam Flutter, widget tree adalah struktur hierarki yang merepresentasikan semua tampilan (UI elements) pada aplikasi.
+Setiap widget yang kita buat akan menjadi node dalam pohon (tree), di mana node bisa punya induk (parent) dan anak (child).
+Setiap widget punya posisi dan fungsi tersendiri, tapi semuanya membentuk satu gambar utuh (UI aplikasi).
 
-## Getting Started
+Cara kerja widget tree:
+- Parent widget menentukan bagaimana child widget ditampilkan dan berperilaku.
+- Ketika ada perubahan pada state atau properti, Flutter hanya akan membangun ulang bagian tree yang terpengaruh, bukan seluruh aplikasi, inilah yang membuat performanya menjadi lebih efisien.
+- Tree ini digunakan saat proses layout (mengatur posisi), rendering (menggambar ke layar), dan hit testing (mendeteksi sentuhan).
 
-This project is a starting point for a Flutter application.
+## Sebutkan semua widget yang kamu gunakan dalam proyek ini dan jelaskan fungsinya.
 
-A few resources to get you started if this is your first Flutter project:
+## Apa fungsi dari widget MaterialApp? Jelaskan mengapa widget ini sering digunakan sebagai widget root.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Jelaskan perbedaan antara StatelessWidget dan StatefulWidget. Kapan kamu memilih salah satunya?
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Apa itu BuildContext dan mengapa penting di Flutter? Bagaimana penggunaannya di metode build?
+
+## Jelaskan konsep "hot reload" di Flutter dan bagaimana bedanya dengan "hot restart".
