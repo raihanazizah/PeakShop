@@ -70,3 +70,18 @@ Sementara itu, Hot Restart menjalankan ulang seluruh aplikasi dari awal dengan m
 
 Pada komentar kode di proyek saya juga dijelaskan perbedaannya secara eksplisit: “Notice that the counter didn’t reset back to zero; the application state is not lost during the reload. To reset the state, use hot restart instead.” Dari situ dapat disimpulkan bahwa Hot Reload lebih cocok digunakan saat melakukan perubahan tampilan atau logika kecil pada UI, sedangkan Hot Restart digunakan ketika ada perubahan besar pada variabel global atau inisialisasi awal yang memerlukan pengulangan penuh dari aplikasi.
 
+
+# Tugas individu 8
+
+## 1. Jelaskan perbedaan antara Navigator.push() dan Navigator.pushReplacement() pada Flutter. Dalam kasus apa sebaiknya masing-masing digunakan pada aplikasi Football Shop kamu?
+Navigator.push() digunakan untuk menambahkan halaman baru di atas halaman yang sedang aktif pada tumpukan (stack) navigasi. Dengan demikian, halaman sebelumnya tidak dihapus, sehingga pengguna masih dapat kembali ke halaman tersebut menggunakan tombol Back. Metode ini sangat berguna ketika aplikasi memerlukan perpindahan sementara antarhalaman tanpa kehilangan konteks halaman sebelumnya.
+
+## 2. Bagaimana kamu memanfaatkan hierarchy widget seperti Scaffold, AppBar, dan Drawer untuk membangun struktur halaman yang konsisten di seluruh aplikasi?
+
+
+## 3. Dalam konteks desain antarmuka, apa kelebihan menggunakan layout widget seperti Padding, SingleChildScrollView, dan ListView saat menampilkan elemen-elemen form? Berikan contoh penggunaannya dari aplikasi kamu.
+
+
+## 4. Bagaimana kamu menyesuaikan warna tema agar aplikasi Football Shop memiliki identitas visual yang konsisten dengan brand toko?
+
+
