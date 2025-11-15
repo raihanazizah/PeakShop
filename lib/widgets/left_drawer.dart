@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:peakperformance_shop/screens/menu.dart';
 import 'package:peakperformance_shop/screens/product_form.dart';
+import 'package:peakperformance_shop/screens/products_entry_list.dart';
 
 class LeftDrawer extends StatelessWidget {
   const LeftDrawer({super.key});
@@ -67,13 +68,13 @@ class LeftDrawer extends StatelessWidget {
           ),
           ListTile(
             leading: const Icon(Icons.inventory_2_outlined),
-            title: const Text('Lihat Produk'),
+            title: const Text('Products List'),
             onTap: () {
-              Navigator.pushReplacement(
+              // Route to news list page
+              Navigator.push(
                 context,
-                MaterialPageRoute(
-                  builder: (context) => ViewProductPage(),
-                ));
+                MaterialPageRoute(builder: (context) => const ProductsEntryListPage()),
+              );
             },
           ),
         ],

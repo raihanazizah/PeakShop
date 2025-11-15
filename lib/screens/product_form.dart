@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:peakperformance_shop/widgets/left_drawer.dart';
+import 'dart:convert';
+import 'package:provider/provider.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:peakperformance_shop/screens/menu.dart';
 
 class AddProductPage extends StatefulWidget {
   const AddProductPage({super.key});
@@ -32,6 +36,7 @@ class _AddProductPageState extends State<AddProductPage> {
 
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Add New Products'),
@@ -153,39 +158,45 @@ class _AddProductPageState extends State<AddProductPage> {
                   padding:
                   const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                 ),
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    showDialog(
-                      context: context,
-                      builder: (context) =>
-                          AlertDialog(
-                            title: const Text('Produk successfully launched!'),
-                            content: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text('Name: $_name'),
-                                Text('Price: Rp $_price'),
-                                Text('Description: $_description'),
-                                Text('Category: $_category'),
-                                Text('Thumbnail: $_thumbnail'),
-                                Text('Unggulan: ${_isFeatured
-                                    ? "Ya"
-                                    : "Tidak"}'),
-                              ],
+                  onPressed: () async {
+                    if (_formKey.currentState!.validate()) {
+
+                      // Kirim ke endpoint Django
+                      final response = await request.postJson(
+                        "http://localhost:8000/create-product-flutter/",
+                        jsonEncode({
+                          "name": _name,
+                          "price": _price,
+                          "description": _description,
+                          "category": _category,
+                          "thumbnail": _thumbnail,
+                          "is_featured": _isFeatured,
+                        }),
+                      );
+
+                      if (context.mounted) {
+                        if (response['status'] == 'success') {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text("Product successfully created!")),
+                          );
+
+                          // Balik ke halaman home
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(builder: (context) => MyHomePage()),
+                          );
+
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text("Something went wrong, please try again."),
                             ),
-                            actions: [
-                              TextButton(
-                                onPressed: () => Navigator.pop(context),
-                                child: const Text('OK'),
-                              ),
-                            ],
-                          ),
-                    );
-                    _formKey.currentState!.reset();
-                  }
-                },
-                child: const Text('Launch Produk'),
+                          );
+                        }
+                      }
+                    }
+                  },
+                child: const Text('Launch Product'),
               ),
             ],
           ),
@@ -195,15 +206,15 @@ class _AddProductPageState extends State<AddProductPage> {
   }
 }
 
-class ViewProductPage extends StatelessWidget {
+/*class ViewProductPage extends StatelessWidget {
   const ViewProductPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     final List<Map<String, dynamic>> dummyProducts = [
-      {'nama': 'Sepatu Bola Nike', 'harga': 1200000},
-      {'nama': 'Bola Adidas', 'harga': 350000},
-      {'nama': 'Jersey Liverpool', 'harga': 499000},
+      {'name': 'Sepatu Bola Nike', 'price': 1200000},
+      {'name': 'Bola Adidas', 'price': 350000},
+      {'name': 'Jersey Liverpool', 'price': 499000},
     ];
 
     return Scaffold(
@@ -220,12 +231,12 @@ class ViewProductPage extends StatelessWidget {
             child: ListTile(
               leading: const
               Icon(Icons.shopping_bag_outlined),
-              title: Text(product['nama']),
-              subtitle: Text('Rp ${product['harga']}'),
+              title: Text(product['name']),
+              subtitle: Text('Rp ${product['price']}'),
             ),
           );
           },
       ),
     );
   }
-}
+}*/
