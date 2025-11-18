@@ -27,6 +27,7 @@ class _AddProductPageState extends State<AddProductPage> {
     'Equipment',
     'Accessories',
     'Apparel',
+    'Supplements',
   ];
 
   bool _isValidUrl(String url) {
@@ -162,7 +163,7 @@ class _AddProductPageState extends State<AddProductPage> {
                     if (_formKey.currentState!.validate()) {
 
                       // Kirim ke endpoint Django
-                      final response = await request.postJson(
+                      final response = await request.post(
                         "http://localhost:8000/create-product-flutter/",
                         jsonEncode({
                           "name": _name,

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:peakperformance_shop/screens/all_products_list.dart';
 import 'package:peakperformance_shop/screens/menu.dart';
 import 'package:peakperformance_shop/screens/product_form.dart';
 import 'package:peakperformance_shop/screens/products_entry_list.dart';
+import 'package:peakperformance_shop/screens/all_products_list.dart';
 import 'package:peakperformance_shop/screens/login.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
@@ -28,7 +30,7 @@ class ItemCard extends StatelessWidget {
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
             ..showSnackBar(
-                SnackBar(content: Text("Kamu telah menekan tombol ${item.name}"))
+                SnackBar(content: Text("You have clicked ${item.name} button"))
             );
           // === Navigasi sesuai tombol ===
           if (item.name == "Create Products") {
@@ -36,12 +38,17 @@ class ItemCard extends StatelessWidget {
               context,
               MaterialPageRoute(builder: (context) => const AddProductPage()),
             );
-          } else if (item.name == "View All Products") {
+          } else if (item.name == "All Products") {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const AllProductsPage()),
+            );
+          } else if (item.name == "My Products") {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const ProductsEntryListPage()),
             );
-          } // Add this after your previous if statements
+          }// Add this after your previous if statements
           else if (item.name == "Logout") {
             // TODO: Replace the URL with your app's URL and don't forget to add a trailing slash (/)!
             // To connect Android emulator with Django on localhost, use URL http://10.0.2.2/

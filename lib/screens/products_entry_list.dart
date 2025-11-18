@@ -16,8 +16,7 @@ class ProductsEntryListPage extends StatefulWidget {
 
 class _ProductsEntryListPageState extends State<ProductsEntryListPage> {
   Future<List<ProductEntry>> fetchProducts(CookieRequest request) async {
-    final response =
-    await request.get('http://localhost:8000/json/?user_only=true');
+    final response = await request.get('http://localhost:8000/json-user-products');
 
     List<ProductEntry> listProducts = [];
 
@@ -60,6 +59,8 @@ class _ProductsEntryListPageState extends State<ProductsEntryListPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Your Products'),
+        backgroundColor: Colors.pinkAccent,
+        foregroundColor: Colors.white,
       ),
       drawer: const LeftDrawer(),
 

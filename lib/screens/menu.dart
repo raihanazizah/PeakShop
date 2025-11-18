@@ -10,9 +10,10 @@ class MyHomePage extends StatelessWidget {
   final String kelas = "D";
 
   final List<ItemHomepage> items = [
-    ItemHomepage("View All Products", Icons.store, Colors.blue),
-    ItemHomepage("Create Products", Icons.folder_special, Colors.green),
-    ItemHomepage("Logout", Icons.add_box, Colors.red),
+    ItemHomepage("All Products", Icons.store, Colors.blue),
+    ItemHomepage("My Products", Icons.folder_special, Colors.pinkAccent),
+    ItemHomepage("Create Products", Icons.add_box, Colors.green),
+    ItemHomepage("Logout", Icons.exit_to_app, Colors.red),
   ];
 
   @override
@@ -64,7 +65,7 @@ class MyHomePage extends StatelessWidget {
                   const Padding(
                     padding: EdgeInsets.only(top: 16.0),
                     child: Text(
-                      'Selamat datang di Peak Performance Shop!',
+                      'Welcome to Peak Performance Shop!',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 18.0,
